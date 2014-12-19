@@ -1,10 +1,6 @@
 (ns goodwin.mappers.services
   (:require [clojure.string :as string]))
 
-(defn- not-service-status? [line]
-  (or (= (first line) \$)
-      (string/blank? line)))
-
 (defn- service-status [line]
   (cond
     (re-find #"running" line) "running"
@@ -19,10 +15,13 @@
               :status (service-status text)}))
          service-statuses)))
 
+(def string-matcher (fn [service] (.contains (:text service) description)))
+(def regex-matcher  (fn [service] (re-find description (:text service))))
+
 (defn service-matching [description services]
   (let [matcher (cond
-                  (string? description)  (fn [service] (.contains (:text service) description))
-                  (instance? java.util.regex.Pattern description) (fn [service] (re-find description (:text service)))
+                  (string? description)                           string-matcher 
+                  (instance? java.util.regex.Pattern description) regex-matcher
                   :else (throw (IllegalArgumentException. "Expecting string or regex pattern.")))]
   (first (filter matcher services))))
 

@@ -3,17 +3,17 @@
             [goodwin.mappers.services :refer :all]))
 
 (defn fake-service-status-provider []
-  ["auditd (pid  867) is running..."
-   "crond (pid  1339) is running..."
-   "elasticsearch is stopped"
-   "netconsole module not loaded"
-   "Configured devices:"
-   "lo eth0 eth1"
-   "Currently active devices:"
-   "lo eth0 eth1"
-   "master status unknown due to insufficient privileges."
-   "rsyslogd status unknown due to insufficient privileges."
-   "Checking for VBoxService ...running"])
+  {:out ["auditd (pid  867) is running..."
+         "crond (pid  1339) is running..."
+         "elasticsearch is stopped"
+         "netconsole module not loaded"
+         "Configured devices:"
+         "lo eth0 eth1"
+         "Currently active devices:"
+         "lo eth0 eth1"
+         "master status unknown due to insufficient privileges."
+         "rsyslogd status unknown due to insufficient privileges."
+         "Checking for VBoxService ...running"]})
 
 (deftest maps-service-output
   (testing "Parses the output of service status"
