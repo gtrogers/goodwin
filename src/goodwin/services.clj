@@ -12,13 +12,12 @@
     :else "unknown"))
 
 (defn output->services-map [status-provider]
-  (let [status-str (status-provider)
-        lines (remove not-service-status? (string/split status-str #"\p{Space}*\n+"))]
+  (let [service-statuses (status-provider)]
     (map (fn [line]
            (let [text (string/trim line)]
              {:text text
               :status (service-status text)}))
-         lines)))
+         service-statuses)))
 
 (defn service-matching [description services]
   (let [matcher (cond

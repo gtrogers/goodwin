@@ -3,19 +3,17 @@
             [goodwin.services :refer :all]))
 
 (defn fake-service-status-provider []
-  "
-  auditd (pid  867) is running...\r\n
-  crond (pid  1339) is running...\r\n
-  elasticsearch is stopped\r\n
-  netconsole module not loaded\r\n
-  Configured devices:\r\n
-  lo eth0 eth1\r\n
-  Currently active devices:\r\n
-  lo eth0 eth1\r\n
-  master status unknown due to insufficient privileges.\r\n
-  rsyslogd status unknown due to insufficient privileges.\r\n
-  Checking for VBoxService ...running\r\n
-  ")
+  ["auditd (pid  867) is running..."
+   "crond (pid  1339) is running..."
+   "elasticsearch is stopped"
+   "netconsole module not loaded"
+   "Configured devices:"
+   "lo eth0 eth1"
+   "Currently active devices:"
+   "lo eth0 eth1"
+   "master status unknown due to insufficient privileges."
+   "rsyslogd status unknown due to insufficient privileges."
+   "Checking for VBoxService ...running"])
 
 (deftest maps-service-output
   (testing "Parses the output of service status"

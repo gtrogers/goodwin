@@ -9,8 +9,16 @@
 
 (def ^:private services-command "/sbin/service --status-all")
 
+(defn tidy-output
+  "Returns a vector of the output of service and
+  removes lines (first 3 and last) which aren't
+  part of /sbin/service"
+  [output]
+  (let [raw-lines (clojure.string/split output #"\r+\n+")] 
+    (map clojure.string/trim (pop (subvec raw-lines 3)))))
+
 (defn get-services [ip user key-path]
   (let [session (get-session ip user key-path)]
     (with-connection session 
-        (:out (ssh session {:in services-command})))))
+      (identity (:out (ssh session {:in services-command}))))))
 
