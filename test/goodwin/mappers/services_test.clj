@@ -1,6 +1,6 @@
-(ns goodwin.services-test
+(ns goodwin.mappers.services-test
   (:require [clojure.test :refer :all]
-            [goodwin.services :refer :all]))
+            [goodwin.mappers.services :refer :all]))
 
 (defn fake-service-status-provider []
   ["auditd (pid  867) is running..."

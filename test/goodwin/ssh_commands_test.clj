@@ -1,5 +1,5 @@
-(ns goodwin.core-test
-  (:require [goodwin.core :refer :all] 
+(ns goodwin.ssh-commands-test
+  (:require [goodwin.ssh-commands :refer :all] 
             [clojure.test :refer :all]))
 
 (def untidy-output

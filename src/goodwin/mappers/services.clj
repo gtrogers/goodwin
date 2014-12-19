@@ -1,4 +1,4 @@
-(ns goodwin.services
+(ns goodwin.mappers.services
   (:require [clojure.string :as string]))
 
 (defn- not-service-status? [line]
