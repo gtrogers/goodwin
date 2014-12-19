@@ -4,7 +4,7 @@
 > just sitting there comfortably looking at pictures of snowflakes."
 >  - Archie Goodwin (from the The League of Frightened Men by Rex Stout)
 
-Goodwin is a Clojure library for mapping the state of servers into Clojure datastructure.
+Goodwin is a Clojure library for mapping the state of servers into Clojure data structures.
 It works by executing commands over SSH and then parsing the output locally. It is currently
 a work in progress.
 
