@@ -7,18 +7,11 @@
     (session agent ip {:username user
                        :strict-host-key-checking :no})))
 
-(def ^:private services-command "/sbin/service --status-all")
-
-(defn tidy-output
-  "Returns a vector of the output of service and
-  removes lines (first 3 and last) which aren't
-  part of /sbin/service"
-  [output]
-  (let [raw-lines (clojure.string/split output #"\r+\n+")] 
-    (map clojure.string/trim (pop (subvec raw-lines 3)))))
+(def ^:private services-command
+  (fn [session] (ssh session {:cmd "/sbin/service --status-all"})))
 
 (defn services-status [ip user key-path]
   (let [session (get-session ip user key-path)]
     (with-connection session 
-      (tidy-output (:out (ssh session {:in services-command}))))))
+      (clojure.string/split (:out (services-command session)) #"\n"))))
 
