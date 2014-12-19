@@ -1,10 +1,9 @@
-(ns goodwin.examples (:require [goodwin.ssh-commands :as commands]
-                               [goodwin.mappers.services :as services]))
+(ns goodwin.examples (:require [goodwin.ssh :refer :all]
+                               [goodwin.ssh-collectors :as c]
+                               [goodwin.mappers.services :as s]))
 
 (defn example []
-  (let [services (services/output->services-map
-                   #(commands/services-status "192.168.50.4"
-                                              "vagrant" 
-                                              "resources/vagrant_private_key"))
-        sshd (services/service-matching "sshd" services)] 
-    (= (:status sshd) "running")))
+  (let [every-status (s/output->services-map #(:services (SSH> "vagrant@192.168.50.4"
+                                                               "resources/vagrant_private_key"
+                                                               c/services)))]))
+

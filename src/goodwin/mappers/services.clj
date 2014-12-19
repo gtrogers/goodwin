@@ -12,7 +12,7 @@
     :else "unknown"))
 
 (defn output->services-map [status-provider]
-  (let [service-statuses (status-provider)]
+  (let [service-statuses (:out (status-provider))]
     (map (fn [line]
            (let [text (string/trim line)]
              {:text text
