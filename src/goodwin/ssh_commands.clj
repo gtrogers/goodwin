@@ -20,5 +20,5 @@
 (defn services-status [ip user key-path]
   (let [session (get-session ip user key-path)]
     (with-connection session 
-      (identity (:out (ssh session {:in services-command}))))))
+      (tidy-output (:out (ssh session {:in services-command}))))))
 
