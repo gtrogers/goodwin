@@ -21,7 +21,9 @@
          lines)))
 
 (defn service-matching [description services]
-  (first (filter (fn [service]
-                   (.contains (:text service) description))
-                 services)))
+  (let [matcher (cond
+                  (string? description)  (fn [service] (.contains (:text service) description))
+                  (instance? java.util.regex.Pattern description) (fn [service] (re-find description (:text service)))
+                  :else (throw (IllegalArgumentException. "Expecting string or regex pattern.")))]
+  (first (filter matcher services))))
 

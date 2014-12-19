@@ -36,5 +36,8 @@
 (deftest finds-service-in-map
   (testing "Finding a service in the services map"
     (is (= (service-matching "master" (output->services-map #(fake-service-status-provider)))
-           {:text "master status unknown due to insufficient privileges." :status "unknown"}))))
+           {:text "master status unknown due to insufficient privileges." :status "unknown"}))
+
+    (is (= (service-matching #"cron" (output->services-map #(fake-service-status-provider)))
+           {:text "crond (pid  1339) is running..." :status "running"}))))
 
