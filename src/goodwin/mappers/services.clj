@@ -7,8 +7,8 @@
     (re-find #"stopped" line) "stopped"
     :else "unknown"))
 
-(defn output->services-map [status-provider]
-  (let [service-statuses (:out (status-provider))]
+(defn output->services-map [service-data]
+  (let [service-statuses (:out service-data)]
     (map (fn [line]
            (let [text (string/trim line)]
              {:text text

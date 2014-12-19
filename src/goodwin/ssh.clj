@@ -11,17 +11,21 @@
 (defn- do-SSH>
   "Attempts to run the commands provided and returns
   a map of command-names to command results"
-  [session commands]
-  (prn session commands)
+  [session collectors]
   (with-connection session
-    (reduce (fn [result command]
-              (assoc result (:name command) ((:cmd command) session))) {} commands)))
+    (reduce (fn [result collector]
+              (assoc result (:name collector) ((:cmd collector) session))) {} collectors)))
 
 (defn- parse-name-and-host [conn-string]
   (clojure.string/split conn-string #"@"))
 
-(defn SSH> [conn-string private-key-path & commands]
+(defn SSH>
+  "Returns a function which runs given collectors using SSH
+  
+  eg. (SSH> \"user@hostname\"
+            \"~/.ssh/my-super-private-key\"
+            services)"
+  [conn-string private-key-path & collectors]
   (let [[user host] (parse-name-and-host conn-string)]
-    (do-SSH> (get-session host user private-key-path)
-            commands)))
+    #(do-SSH> (get-session host user private-key-path) collectors)))
 
