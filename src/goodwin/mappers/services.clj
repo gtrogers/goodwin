@@ -24,7 +24,7 @@
 (defn- regex? [thing]
   (instance? java.util.regex.Pattern thing))
 
-(defn service-matching [description services]
+(defn service-matching [services description]
   (let [matcher (cond
                   (string? description) (string-matcher description) 
                   (regex? description)  (regex-matcher description)
