@@ -1,12 +1,22 @@
+[![Clojars Project](http://clojars.org/goodwin/latest-version.svg)](http://clojars.org/goodwin)
+
 # Goodwin
 
-> "He's in a battle with the elements. He's fighting his way throuigh a raging blizzard,
+> "He's in a battle with the elements. He's fighting his way through a raging blizzard,
 > just sitting there comfortably looking at pictures of snowflakes."
 >  - Archie Goodwin (from the The League of Frightened Men by Rex Stout)
 
 Goodwin is a Clojure library for capturing the state of servers. It runs shell commands via
-SSH and turns the output into Clojure datastructures which can then be used in your testing
+SSH and turns the output into Clojure data structures which can then be used in your testing
 framework of choice. It is currently a work in progress.
+
+## Installation
+
+This library is very new and likely to change a lot. But if you're like to try it you can add
+this to your `project.clj`
+
+`[goodwin "0.2.0-SNAPSHOT"]`
+
 
 ## Usage
 
