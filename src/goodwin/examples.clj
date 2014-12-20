@@ -7,7 +7,9 @@
   (testing "that something is running"
     (let [server-data (map-server (SSH> "vagrant@192.168.50.4"
                                         "resources/vagrant_private_key"
-                                        c/services))]
+                                        c/services
+                                        (c/command "echo hello") 
+                                        ))]
       (is (= (-> server-data
                  :services
                  (s/service-matching "mongod")
