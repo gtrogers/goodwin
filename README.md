@@ -12,7 +12,7 @@ framework of choice. It is currently a work in progress.
 
 ## Installation
 
-This library is very new and likely to change a lot. But if you're like to try it you can add
+This library is very new and likely to change a lot. But if you would like to try it you can add
 this to your `project.clj`
 
 `[goodwin "0.2.0-SNAPSHOT"]`
