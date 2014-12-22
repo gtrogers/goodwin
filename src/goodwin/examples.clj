@@ -9,6 +9,7 @@
                                         "resources/vagrant_private_key"
                                         c/services
                                         (c/command "echo hello") 
+                                        c/processes
                                         ))]
       (is (= (-> server-data
                  :services
